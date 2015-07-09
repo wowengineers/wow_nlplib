@@ -7,6 +7,7 @@ def wow_tokenize(string):
 	return count
 #match_w function matches and returns different form of words with their counts
 def wow_match_w(string,line):
+	line=re.sub('\.','. ',line)
 	line=wow_tokenize(line)
 	i=0
 	a=len(string)
@@ -24,6 +25,8 @@ def wow_match_w(string,line):
 				key_ls.append(key[i])
 			ls=key_ls	
 			for i in range(0,a):
+				if key_ls[0].lower()!=str_ls[0].lower():
+					break
 				if str_ls[i].lower()==key_ls[i].lower():
 					count+=1
 			per=(count/float(a))*100
@@ -48,6 +51,8 @@ def wow_match_w(string,line):
 					key_ls.append(key[i])
 				ls=key_ls	
 				for i in range(0,avg_len):
+					if key_ls[0].lower()!=str_ls[0].lower():
+						break
 					if str_ls[i].lower()==key_ls[i].lower():
 						count+=1
 				per=(count/float(avg_len))*100
@@ -109,3 +114,4 @@ def wow_file_str(mfile,string):
 def wow_file_seg(mfile):
 	data=wow_check_file(mfile)
 	return wow_segment(data)
+
